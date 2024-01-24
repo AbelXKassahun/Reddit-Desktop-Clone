@@ -1,0 +1,61 @@
+span{
+    color: white;
+    font-size: 12px;
+}
+
+h3{
+    font-weight: 400;
+}
+
+.post{
+    /* outline: 2px dotted red; */
+    width: 650px;
+    max-width: 650px;
+    max-height: 800px;
+    min-height: 120px;
+    display: flex;
+    border: 0.5px solid grey;
+    border-radius: 10px;
+}
+
+.post .post_rating{
+    display: flex;
+    flex-direction: column;
+    width: 8%;
+}
+
+.post .right_section{
+    outline: 2px dotted blue;
+    max-width: 92%;
+    min-width: 92%;
+    max-height: 800px;
+    min-height: 100px; /* its minimum height is post infn + comment and save 
+    (no post just title)*/
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.right_section .post_infn{
+    display: flex;
+    align-items: flex-start;
+    align-items: center;
+
+}
+
+.right_section .actual_post .post_title{
+    max-height: 100px;
+    min-height: 30px;
+    display: flex;
+    align-items: center;
+    outline: 2px dotted red;
+
+}
+
+.right_section .comment_save{
+    /* outline: 2px dotted green; */
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}

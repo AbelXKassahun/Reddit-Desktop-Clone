@@ -1,0 +1,13 @@
+.imageComponent{
+    min-width: 200px;
+    min-height: 300px;
+    border: 1px solid #fff;
+}
+
+.imageComponent img{
+    min-width: 200px;
+    min-height: 300px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}

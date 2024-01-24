@@ -1,0 +1,162 @@
+*{
+    /* outline: 1px dotted red; */
+    box-sizing: border-box;
+}
+
+:root {
+    --background-light: #ffffff;
+    --text-color-light: #333333;
+    --background-dark: #1a1a1b;
+    --text-color-dark: #ffffff;
+    --searchbar-light: #f6f7f8;
+    --searchbar-dark: #272729;
+}
+
+/* theme */
+
+.navbar-light {
+    background-color: #ffffff;
+    color: #333333;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-dark {
+    background-color: #1a1a1b;
+    color: #fff;
+    box-shadow: 0 2px 4px rgba(255, 255, 255, 0.1);
+}
+
+.search_bar_light{
+    background-color: #f6f7f8;
+}
+
+.search_bar_dark{
+    background-color: #272729;
+    color: #fff;
+}
+
+/*  */
+
+.navbar{
+    position: fixed;
+    z-index: 2;
+    width: 100%;
+    height: 55px;
+    /* padding-top: 10px;
+    padding-bottom: 10px; */
+    padding-top: 5px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding-right: 8%;
+}
+
+
+
+.navbar .brand{
+    display: flex;
+    justify-content: space-around;
+    margin-right: 1rem;
+    align-items: center;
+}
+
+.brand img{
+    width: 40px;
+    height: 40px;
+    margin-left: 55px;
+    margin-right: 5px;
+}
+
+.brand h1{
+    margin: 0px;
+    margin-bottom: 6px;
+    color: #ff4500;
+}
+
+.search_bar_container{
+    width: 36%;
+    height: 40px;
+    padding: 0px;
+    margin: 0px 2%;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    z-index: 2;
+}
+
+.search_bar{
+    background-color: inherit;
+    color: inherit;
+    min-height: 40px;
+    width: 100%;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+}
+
+
+
+.search_bar:hover{
+    border: 1px solid #5fabe3;
+}
+
+.search_bar img{
+    width: 25px;
+    height: 70%;
+    margin-left: 5px;
+    margin-right: 5px;
+    /* border-radius: 50%; */
+}
+
+.search_bar input{
+    background-color: inherit;
+    color: inherit;
+    width: 90%;
+    height: 30px;
+    border: none;
+}
+
+.search_bar input:hover{
+    border: none
+}
+
+.search_bar input:focus{
+    outline: none
+}
+
+.icon_decs{
+    width: 10%;
+    margin: 0px 2%;
+    border: none;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.icon_decs img{
+    width: 25px;
+    height: 25px;
+    border: none;
+    margin: 0px 5px;
+}
+
+.login_btn{
+    height: 40px;
+    min-width: 70px;
+    max-width: 80px;
+    background-color: #d83a00;
+    border: none;
+    border-radius: 15px;
+    color: #fff;
+    /* text-align: center; */
+    display: flex;
+    justify-content: center;
+}
+
+.login_btn:hover{
+    background-color: #d83a00;
+    opacity: 0.8;
+}
+
+
