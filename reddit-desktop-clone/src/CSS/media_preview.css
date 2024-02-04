@@ -1,0 +1,42 @@
+label{
+    color: #fff;
+    font-weight: bolder;
+}
+h4{
+    display: inline;
+    margin-right: 10px;
+}
+
+.upload_inital{
+    display: flex;
+    flex-direction: row;
+    height: 150px;
+    align-items: center;
+}
+
+.label_container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 35px;
+    width: 75px;
+    border: #ced1d2 solid 1px;
+    border-radius: 10px;
+    margin-right: 10px;
+
+}
+
+.media_preview{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    column-gap: 10px;
+}
+
+.media_preview button{
+    width: 50px;
+    display: flex;
+    justify-content: center;
+    border: #343536 solid 1px;
+    margin-top: 10px;
+}

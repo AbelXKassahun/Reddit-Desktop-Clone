@@ -1,0 +1,128 @@
+hr{
+    width: 100%;
+    opacity: 0.2;
+}
+input{
+    background-color: #1a1a1b;
+    color: #7c7e7f;
+}
+input:focus{
+    outline: none;
+}
+
+.create_post{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    height: 80%;
+}
+
+.post_title{
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    align-items: flex-start;
+    margin-bottom: 10px;
+}
+
+.submit_cont{
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+}
+
+.submit_cont .choose_community{
+    height: 35px;
+    width: 270px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #1a1a1b;
+    border: #343536 solid 1px;
+}
+
+.choose_community input{
+    height: 100%;
+    width: 70%;
+    background-color: #1a1a1b;
+    color: #7c7e7f;
+    border: none;
+}
+
+.submit_cont .main_container{
+    background-color: #1a1a1b;
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+}
+
+.main_container .title_and_preview .title input{
+    border: #343536 solid 1px;
+    border-radius: 6px;
+    height: 40px;
+    width: 100%;
+    padding-left: 10px;
+}
+
+.title_and_preview{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 10px;
+}
+
+.title{
+    padding-left: 0px;
+    width: 90%;
+}
+
+.content_editor{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+    border: #343536 solid 1px;
+    border-radius: 6px;
+}
+
+.flair_and_tag{
+    display: flex;
+    width: 85%;
+    column-gap: 15px;
+    padding-left: 38px;
+}
+
+.flair_and_tag button{
+    width: 100px;
+    color: #7c7e7f;
+    border-radius: 20px;
+    border: #343536 solid 1px;
+    display: flex;
+    justify-content: center;
+    column-gap: 5px;
+}
+
+.submit_container{
+    padding: 0px 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+    row-gap: 10px;
+    padding-bottom: 10px;
+}
+
+.submit_container button{
+    width: 100px;
+    color: #7c7e7f;
+    border-radius: 20px;
+    border: #343536 solid 1px;
+    display: flex;
+    justify-content: center;
+    column-gap: 5px;
+}
+
+.submit_container button:hover{
+    background-color: #fff;
+    color: black
+}

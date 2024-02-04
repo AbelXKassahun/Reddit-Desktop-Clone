@@ -1,0 +1,13 @@
+.post_type_selector{
+    display: flex;
+    height: 60px;
+    border-bottom: #343536 solid 1px;;
+}
+.post_type_selector button{
+    height: 100%;
+    display: flex;
+    column-gap: 8px;
+    justify-content: center;
+    align-items: center;
+    border-right: 1px solid #343536;
+}

@@ -1,3 +1,12 @@
+@font-face{
+  font-family: 'Roboto-Condensed';
+  src:url('./Assets/Font/Roboto_Condensed/static/RobotoCondensed-Regular.ttf');
+}
+
+button, p, h3, span, input, div{
+  font-family: 'Roboto-Condensed';
+}
+
 .App {
   text-align: center;
 }

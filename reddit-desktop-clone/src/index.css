@@ -1,4 +1,10 @@
+@font-face{
+  font-family: 'Roboto-Condensed';
+  src:url('./Assets/Font/Roboto_Condensed/static/RobotoCondensed-Regular.ttf');
+}
+
 body {
+  font-family: 'Roboto-Condensed';
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
