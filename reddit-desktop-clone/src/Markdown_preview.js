@@ -1,22 +1,23 @@
-import {useRef} from 'react';
-import Markdown from 'react-markdown';
-// import remarkGfm from 'remark-gfm'
+import {useState, useEffect} from 'react';
+import MDEditor from '@uiw/react-md-editor';
 import './CSS/markdown_preview.css';
 
-const Markdown_preview = ({text, handleTextSelection, applyFormatting}) => {
-    const divRef = useRef(null);
+const Markdown_preview = ({handleTextChange, post_approve2}) => {
+    const [value, setValue] = useState("**Enter text here**");
 
-    const handleClick = () => {
-        if(divRef.current){
-            document.execCommand('selectAll', false, null);
+    useEffect(() => {
+        if(value !== "**Enter text here**" && value.length > 0){
+            handleTextChange(value);
+            post_approve2(true);
         }
-        // the below code also works
-        // document.execCommand('selectAll', false, null);
-    }
+        else{
+            post_approve2(false);
+        }
+    }, [value]);
 
     return (
         <div className="optionsAndpreview">
-            <div className="markdown_options">
+            {/* <div className="markdown_options">
                 <button title= "Bold" className="option1" onClick={() => applyFormatting("bold")}><span className="material-symbols-outlined">format_bold</span></button>
                 <button title= "Italic" className="option2" onClick={() => applyFormatting("italic")}><span className="material-symbols-outlined">format_italic</span></button>
                 <button title= "Shorten a link" className="option2" onClick={() => applyFormatting("link")}><span className="material-symbols-outlined">http</span></button>
@@ -25,15 +26,14 @@ const Markdown_preview = ({text, handleTextSelection, applyFormatting}) => {
                 <button title= "Bulleted List" className="option2" onClick={() => applyFormatting("bulleted_list")}><span className="material-symbols-outlined">format_list_bulleted</span></button>
                 <button title= "Numbered List" className="option2" onClick={() => applyFormatting("numbered_list")}><span className="material-symbols-outlined">format_list_numbered</span></button>
                 <button title= "Quote Block" className="option2" onClick={() => applyFormatting("quote_block")}><span className="material-symbols-outlined">format_quote</span></button>
-            </div>
-            <div className="markdown_preview" >
-                <div ref={divRef} className="markdown_editor"  contentEditable={true} 
-                    onSelect={handleTextSelection}
-                    // onChange={handleTextChange}
-                    onClick={handleClick}
-                >
-                    <Markdown>{text}</Markdown>
-                </div>
+            </div> */}
+            <div className="markdown_preview" data-color-mode="dark">
+                <MDEditor
+                    value={value}
+                    onChange={setValue}
+                    highlightEnable={false}
+                />
+                {/* <MDEditor.Markdown source={value} style={{ whiteSpace: 'pre-wrap' }} /> */}
             </div>
         </div>
     );

@@ -1,7 +1,7 @@
 import {useState} from 'react';
 import './CSS/postTypeSelector.css';
 
-const PostTypeSelector = ({ changePostType }) => {
+const PostTypeSelector = ({ changePostType, post_approve2 }) => {
     const defaultStyle = {
         display: "flex"
     }
@@ -33,7 +33,8 @@ const PostTypeSelector = ({ changePostType }) => {
             setLink(defaultStyle)
             setPost(defaultStyle)
         }
-        changePostType(btn)
+        changePostType(btn);
+        post_approve2(false);
     }
 
     return (

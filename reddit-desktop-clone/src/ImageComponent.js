@@ -10,14 +10,7 @@ const ImageComponent = (props) => {
     // const {mediaUrl, isPending, error} = useMediaFetch(url);
 
     return (
-        <div className="imageComponent">
-            {/* {mediaUrl && (
-                <img src={mediaUrl} alt="Friend" />
-            )} */}
-            {/*isPending && <img src = "./src/Assets/Loading.jpg"/>*/}
-            {/*error && <img src = "./src/Assets/error.jpg"/>*/}
-            <img src={props.url} alt=""  />
-        </div>
+        <img  className="imageComponent" src={props.url} alt=""  />
     );
 }
 

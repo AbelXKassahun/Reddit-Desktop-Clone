@@ -40,3 +40,7 @@ h4{
     border: #343536 solid 1px;
     margin-top: 10px;
 }
+
+.media_container{
+    max-width: 80%;
+}

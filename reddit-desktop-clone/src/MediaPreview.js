@@ -3,8 +3,7 @@ import './CSS/media_preview.css';
 import VideoComponent from './VideoComponent';
 import ImageComponent from './ImageComponent';
 
-const MediaPreview = () => {
-    const [selectedFile, setSelectedFile] = useState(null);
+const MediaPreview = ( {changeMediaFile, getMediaFile, post_approve2} ) => {
     const [previewUrl, setPreviewUrl] = useState(null);
     const [error, setError] = useState(null);
     const [fileType, setFileType] = useState(null);
@@ -17,7 +16,6 @@ const MediaPreview = () => {
 
     const handleFileChange = (e) => { 
         const file = e.target.files[0];
-        console.log(file.type);
 
         if (file) {
             // Check file type
@@ -42,7 +40,7 @@ const MediaPreview = () => {
             }
             console.log(error);
             // Set the selected file and preview URL
-            setSelectedFile(file);
+            changeMediaFile(file);
             // if (file.type.startsWith('image/')) {
             //     const reader = new FileReader();
             //     reader.onloadend = () => {
@@ -57,10 +55,8 @@ const MediaPreview = () => {
             // // preview URL for images
             const PreviewUrl = URL.createObjectURL(file);
             setPreviewUrl(PreviewUrl);
-            console.log("AAAAA", PreviewUrl);
-            console.log("BBBBB", previewUrl);
-            console.log("CCCCC", selectedFile);
             changeStyle();
+            post_approve2(true);
         }
         e.target.value = null; 
     }
@@ -70,8 +66,9 @@ const MediaPreview = () => {
             setInitialStyle({display: "flex"});
             setPreviewStyle({display: "none"});
             setGoBack(false);
-            setSelectedFile(null);
+            changeMediaFile(null);
             setPreviewUrl(null);
+            post_approve2(false);
         }
         else{
             setInitialStyle({display: "none"});
@@ -80,9 +77,6 @@ const MediaPreview = () => {
         }
     }
 
-    const handleSubmit = () => {
-        // post request
-    };
 
     return (
         <>
@@ -100,8 +94,11 @@ const MediaPreview = () => {
             </div>
             <div className="media_preview" style={previewStyle}>
                 <button onClick={() => changeStyle()}><span className="material-symbols-outlined">arrow_back</span></button>
-                {fileType === "image" && previewUrl && <ImageComponent url = {previewUrl}/>}
-                {fileType === "video" && previewUrl && selectedFile && <VideoComponent url = {previewUrl} type={selectedFile.type}/>}
+                <div className="media_container">
+                    {fileType === "image" && <ImageComponent url = {previewUrl}/>}
+                    {fileType === "video" && previewUrl && getMediaFile() && <VideoComponent url = {previewUrl} type={getMediaFile().type}/>}
+                </div>
+
             </div>
         </>
     );

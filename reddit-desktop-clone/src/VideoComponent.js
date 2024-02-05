@@ -9,6 +9,7 @@ const VideoComponent = (props) => {
     // const {mediaUrl, isPending, error} = useMediaFetch(url);
     // const buf = props.url.arrayBuffer();
     // const src = URL.createObjectURL( new Blob( [ buf ] ) );
+    console.log(props.type);
     return (
         <video controls>
             <source src={props.url} type={props.type}></source>

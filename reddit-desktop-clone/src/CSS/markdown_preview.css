@@ -3,23 +3,32 @@
     padding-left: 3px;
     padding-right: 3px;
 }
-.markdown_options{
-
+/* .markdown_options{
     display: flex;
     align-items: center;
     justify-content: center;
-    /* width: 90%; */
     width: 99%;
 }
 
 .markdown_options button{
     justify-content: center;
-}
-.markdown_preview{
-    border-top: #343536 solid 1px;
+} */
 
+.markdown_preview {
+    border-top: #343536 solid 1px;
+    width: 100%;
 }
-.markdown_preview .markdown_editor{
+
+.markdown_preview *{
+    color: #fff;
+    
+}
+
+.markdown_preview div{
+    background-color: #1a1a1b;
+}
+
+/* .markdown_preview .markdown_editor{
     width: 100%;
     background-color: #1a1a1b;
     color: #7c7e7f;
@@ -34,7 +43,7 @@
     font-size: 20px;
     color: #7c7e7f;
     padding: 0px 0px;
-}
+} */
 /* .edit_markdown{
     height: 100%;
 

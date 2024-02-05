@@ -1,4 +1,5 @@
 import React, {useState, useEffect, useRef} from 'react';
+import MDEditor from '@uiw/react-md-editor';
 
 import './CSS/createPost.css';
 import PostTypeSelector from './PostTypeSelector';
@@ -7,83 +8,179 @@ import MediaPreview from './MediaPreview';
 
 
 const CreatePost = () => {
-    const [text, setText] = useState('Text (Optional)');
+    const [text, setText] = useState("");
 
-    const [postType, setPostType] = useState('initial');
+    const [title, setTitle] = useState("");
 
+    const [postType, setPostType] = useState('post');
 
-    const changePostType = (type) => {
-        setPostType(type)
+    const [selectedFile, setSelectedFile] = useState(null);
+
+    const [flair, setFlair] = useState(null);
+
+    const [postBtnStyle, setPostBtnStyle] = useState({display: "none"});
+
+    const [postApproved1, setPostApproved1] = useState(false);
+    const [postApproved2, setPostApproved2] = useState(false);
+
+    const handleTextChange = (val) => {
+        setText(val)
     }
 
-    const handleTextSelection = () => {
-        const selectedText = window.getSelection().toString();
-        if(selectedText && selectedText.length > 0){
-            const range = window.getSelection().getRangeAt(0);
-            console.log('Selected text:', selectedText);
-            // console.log(range);
-            return selectedText;
+    const handleTitleChange = (e) => {
+        setTitle(e.target.value);
+    };
+
+    const post_approve2 = (val) => {
+        setPostApproved2(val)
+    }
+
+    const apply_flair = (new_flair) => {
+        const filtered_flair = flair.filter(a => a !== new_flair);
+        if(filtered_flair.length == flair.length){
+            filtered_flair.push(new_flair)
+            setFlair(filtered_flair);
+        }
+        else{
+            setFlair(filtered_flair)
         }
     }
 
-    const applyFormatting = (type) => {
-        // const newText = `${text.slice(0, selectedRange.start)}<${style}>${text.slice(
-        //     selectedRange.start,
-        //     selectedRange.end
-        // )}</${style}>${text.slice(selectedRange.end)}`;
+    const changeMediaFile = (file) => {
+        setSelectedFile(file);
+    }
 
-        const selected = handleTextSelection();
-        const newText = type == "bold" ?`**${selected}**` : type == "italic" ? `*${selected}*` : ''
-        
-        // const editor = document.querySelector(".markdown_editor");
-        // // editor.textContent = ''
-        // console.log(editor.textContent);
-        setText(newText);
-    };
+    const getMediaFile = () => {
+        return selectedFile;
+    }
 
+    const changePostType = (type) => {
+        setPostType(type);
+    }
 
+    const media_post_request = () => {
+        const formData = new FormData();
 
+        formData.append('videoFile', selectedFile);
+
+        fetch('', {
+            method: 'POST',
+            body: formData,
+        })
+        .then(response => response.json())
+        .then(data => data)
+        .catch(error => console.error('Error uploading post: ', error));
+    }
+
+    const after_media_post_request = (post_type, data) => {
+        const post_data = {
+            post_type: post_type.include("video") ? "video_post" : "image_post",
+            title: title,
+            text: null,
+            image_name: post_type.include("image") ? data.media_name : null,
+            video_name: post_type.include("video") ? data.media_name : null,
+            link: null,
+            flair: flair
+        }
+        fetch('', {
+            method: 'POST',
+            header: {
+                "content-type": "application/json",
+            },
+            body: post_data,
+        })
+        .then(response => response.json())
+        .then(data => data)
+        .catch(error => console.error('Error uploading post: ', error));
+    }
+
+    const normie_post_request = (post_type) => {
+        const post_data = {
+            post_type: post_type,
+            title: title,
+            text: text,
+            image_name: null,
+            video_name: null,
+            // link: ,
+            flair: flair
+        }
+        fetch('', {
+            method: 'POST',
+            header: {
+                "content-type": "application/json",
+            },
+            body: post_data,
+        })
+        .then(response => response.json())
+        .then(data => data)
+        .catch(error => console.error('Error uploading post: ', error));
+    }
 
     const submit = () => {
-
+        if(postType === "imgVid"){
+            const data = media_post_request();
+            after_media_post_request(selectedFile.type, data);
+        }
+        else{
+            normie_post_request(postType)
+        }
     }
+
+    useEffect(() => {
+        if(text.length > 0 && title.length > 0){
+            setPostApproved1(true);
+        }
+        else{
+            setPostApproved1(false);
+        }
+
+        if(postApproved1 && postApproved2){
+            setPostBtnStyle({display: "flex"})
+        }
+        else if(postApproved2 && selectedFile){
+            setPostBtnStyle({display: "flex"})
+        }
+        else{
+            setPostBtnStyle({display: "none"})
+        }
+    }, [text, title, postType, selectedFile]);
+
     return (
-        <div className="create_post">
+        <div className="create_post"  data-color-mode="dark">
+            <div className='pp'>
+                <MDEditor.Markdown source={text} />
+            </div>
             <div className="post_title">
-                <h3 onSelect={handleTextSelection}>Create Post</h3>
+                <h3>Create Post</h3>
                 <hr />
             </div>
             <div className="submit_cont"> 
                 <div className="choose_community">
-                    <span className="material-symbols-outlined">search</span> {/* this will change to a subreddit or a user icon once the user chooses where to post*/}
+                    <span className="material-symbols-outlined">search</span> {/* this will change to a subreddit or a user icon once the user chooses where to post 5*/}
                     <input type="text" placeholder="Choose a Community"/>
                     <span className="material-symbols-outlined">expand_more</span>
                 </div>
                 <div className="main_container">
-
-                    <PostTypeSelector changePostType = {changePostType}/>
-
+                    <PostTypeSelector changePostType = {changePostType} post_approve2={post_approve2}/>
                     <div className="title_and_preview">
                         <div className="title">
-                            <input type="text" placeholder="Title" />
+                            <input className="title" type="text" placeholder="Title" value={title} onChange={handleTitleChange}/>
                         </div>
                         <div className="content_editor">
-                            {postType == "post" && <Markdown_preview text = {text} handleTextSelection = {handleTextSelection} applyFormatting = {applyFormatting}/>}
-                            {postType == "imgVid" && <MediaPreview/>}
+                            {postType === "post" && <Markdown_preview handleTextChange = {handleTextChange} post_approve2={post_approve2}/>}
+                            {postType === "imgVid" && <MediaPreview changeMediaFile = {changeMediaFile} getMediaFile={getMediaFile} post_approve2={post_approve2}/>}
                         </div>
                     </div>
                     <div className="flair_and_tag">
-                        <button className="OC"><span className="material-symbols-outlined">sell</span> OC</button>
-                        <button className="spoiler"><span className="material-symbols-outlined">sell</span> Spoiler</button>
-                        <button className="NSFW"><span className="material-symbols-outlined">sell</span> NSFW</button>
-                        <button className="NSFW"><span className="material-symbols-outlined">sell</span> Flair <span className="material-symbols-outlined">expand_more</span></button>
-
+                        <button className="OC" onClick={() => apply_flair("OC")}><span className="material-symbols-outlined">sell</span> OC</button>
+                        <button className="spoiler" onClick={() => apply_flair("Spoiler")}><span className="material-symbols-outlined">sell</span> Spoiler</button>
+                        <button className="NSFW" onClick={() => apply_flair("NSFW")}><span className="material-symbols-outlined">sell</span> NSFW</button>
+                        <button className="NSFW" ><span className="material-symbols-outlined">sell</span> Flair <span className="material-symbols-outlined">expand_more</span></button>
                     </div>
                     <div className="submit_container">
                         <hr />
-                        <button onClick={() => { submit() }}>Post</button>
+                        <button style = {postBtnStyle} onClick={() => { submit() }}>Post</button>
                     </div>
-
                 </div>
             </div>
         </div>
