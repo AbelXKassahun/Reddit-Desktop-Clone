@@ -54,6 +54,7 @@ const MediaPreview = ( {changeMediaFile, getMediaFile, post_approve2} ) => {
             // }
             // // preview URL for images
             const PreviewUrl = URL.createObjectURL(file);
+            console.log(PreviewUrl);
             setPreviewUrl(PreviewUrl);
             changeStyle();
             post_approve2(true);

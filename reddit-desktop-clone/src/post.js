@@ -2,8 +2,21 @@ import ImageComponent from './ImageComponent';
 import VideoComponent from './VideoComponent';
 import { Link } from 'react-router-dom';
 import "./CSS/Post.css";
+import { useEffect, useState } from 'react';
 
 const Post = (props) => {
+    const [mediaObjectURL, setMediaObjectURL] = useState('');
+    // const url_dotnet = "https://localhost:7155/Home/getPosts";
+    // const {data: posts, isPending, error} = useFetch(url_jsonServer);
+    
+    useEffect(() => {
+        if(props.post_type === "image_post"){
+
+        }
+        else if(post.post_type === "video_post"){
+
+        }
+    }, [])
     const post = props.post
     return (
         <div className="post" as={Link} to="/">
@@ -29,8 +42,8 @@ const Post = (props) => {
                     <div className="post_title">
                         <h3>{ post.title }</h3>
                     </div>
-                    {post.post_type === "image_post" && <ImageComponent image_name = {post.image_name}/>}
-                    {post.post_type === "video_post" && <VideoComponent video_name = {post.video_name}/>}
+                    {post.post_type === "image_post" && <ImageComponent url = {"63a345c4-cbc1-4dac-bc97-e933c2b4a235"}/>}
+                    {post.post_type === "video_post" && <VideoComponent video_name = {mediaObjectURL}/>}
                     {/* {post.post_type === "text_post" && <NormalPostComponent text_content = {post.text}/>} */}
                     {/* {post.post_type === "link_post" && <LinkPostComponent link = {post.link}/>} */}
                     {post.post_type === "text_post" && <span>{post.text}</span>}

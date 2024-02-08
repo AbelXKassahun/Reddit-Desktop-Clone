@@ -4,11 +4,14 @@ import useFetch from './Custom Hook/useFetch';
 import Post from './post';
 import VideoComponent from './VideoComponent';
 import CreatePost from './CreatePost';
+import LoginSignup from './LoginSignup';
+import PostDetails from './PostDetails';
+import Profile from './Profile';
 
 const Home = () => {
-    const url_dotnet = "https://localhost:7155/Home/getPosts";
-    const url_jsonServer = "http://localhost:8000/posts";
-    const {data: posts, isPending, error} = useFetch(url_jsonServer);
+    // const url_dotnet = "https://localhost:7155/Home/getPosts";
+    // const url_jsonServer = "http://localhost:8000/posts";
+    // const {data: posts, isPending, error} = useFetch(url_jsonServer);
 
     return (
         // <div className="home">
@@ -25,7 +28,10 @@ const Home = () => {
         //     <p>Copyright</p>
         // </div>
         <div className="home">
-            <CreatePost/>
+            {/* <CreatePost/> */}
+            {/* <LoginSignup/> */}
+            {/* <PostDetails/> */}
+            <Profile/>
         </div>
     );
 }

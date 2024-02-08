@@ -1,0 +1,27 @@
+.login_signup_popup{
+    min-height: 400px;
+    max-height: 620px;
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+    z-index: 4;
+    border: #343536 solid 1px;
+    border-radius: 10px;
+    background-color: #1a1a1b;
+}
+
+.login_signup_popup p{
+    color: #fff;
+}
+
+
+.login_signup_close{
+    width: 100%;
+    height: 5%;
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 5px;
+    padding-right: 5px;
+    margin-bottom: 10px;
+}
+
