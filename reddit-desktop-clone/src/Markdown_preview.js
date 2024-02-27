@@ -15,6 +15,8 @@ const Markdown_preview = ({handleTextChange, post_approve2}) => {
         }
     }, [value]);
 
+
+
     return (
         <div className="optionsAndpreview">
             {/* <div className="markdown_options">

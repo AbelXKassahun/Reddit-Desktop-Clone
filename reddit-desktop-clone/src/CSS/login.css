@@ -5,7 +5,6 @@
     flex-direction: column;
     row-gap: 40px;
     align-items: center;
-
 }
 .login .input_container{
     width: 100%;

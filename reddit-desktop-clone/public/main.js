@@ -7,6 +7,18 @@ function createWindow () {
         width: 1400,
         height: 800,
         minWidth: 765,
+        center: true,
+        // frame: false,
+        autoHideMenuBar: true,
+        // vibrancy: 'under-window',
+        // visualEffectState: 'active',
+        // titleBarStyle: "hidden",
+        titleBarStyle: 'hidden',
+        titleBarOverlay: {
+            color: '#2f3241',
+            symbolColor: '#74b1be',
+        },
+        icon: path.join(__dirname, '../src/Assets/Icons/reddit.png'),
         webPreferences: {
             preload: path.join(__dirname, 'preload.js')
         }

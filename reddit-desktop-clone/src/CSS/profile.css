@@ -1,20 +1,38 @@
 .profile_container{
+    position: relative;
+    top: 50px;
     display: flex;
-    flex-direction: column;
-    width: 1200px;
-    height: 600px;
-    border: #343536 solid 1px;
-    background-color: #1a1a1b;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
     overflow-y: scroll;
+    padding-top: 50px;
+    column-gap: 20px;
 }
 
-::-webkit-scrollbar {
-    display: none;
+.profile_close{
+    height: 30px;
 }
+
+.profile_close:hover{
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+.optionsViews{
+    width: 1300px;
+    height: 650px;
+    border: #343536 solid 1px;
+    background-color: #1a1a1b;
+}
+
+/* ::-webkit-scrollbar {
+    display: none;
+} */
 
 .profile_options{
     display: flex;
-    width: 1200px;
+    width: 1300px;
     border-bottom: #343536 solid 1px;
 
 }
@@ -25,11 +43,55 @@
     width: 150px;
     height: 50px;
     border-right: #343536 solid 1px;
-
 }
 
-.profile_view{
+/* this shit is dangerous */
+.profileView{   
+    padding: 10px;
+    height: 90%;
+    overflow-y: scroll;
+}
+
+.forPostsAndComments{
     display: flex;
-    flex-direction: column;
-    row-gap: 20px;
+    flex-wrap: wrap;
+    column-gap: 10px;
+}
+
+.userPost_container{
+    height: 100%;
+    width: 100%;
+    overflow-y: scroll;
+    overflow-x: scroll;
+    padding: 10px 10px;
+    display: grid;
+    grid-template-columns: auto auto; /* Two columns */
+    gap: 10px; /* Gap between items */
+}
+
+.userPost_container p{
+    color: white;
+}
+
+.comment_container{
+    height: 100%;
+    width: 100%;
+    overflow-y: scroll;
+    overflow-x: scroll;
+    padding: 10px 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.comment_container p{
+    color: white;
+}
+
+.clearHistory {
+    width: 100px;
+    border: #343536 solid 1px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
 }

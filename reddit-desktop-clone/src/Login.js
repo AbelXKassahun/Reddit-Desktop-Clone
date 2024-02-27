@@ -1,7 +1,13 @@
 import {useState, useEffect} from 'react';
 import './CSS/login.css';
+import { useNavigate } from 'react-router-dom';
+import { useInfn } from './Cache'
+
 
 const Login = ({changeWhich}) => {
+    const navigate = useNavigate();
+    const fromCache = useInfn();
+
     const [loginUsername, setLoginUsername] = useState(null);
     const [loginPassword, setLoginPassword] = useState(null);
     //error messages
@@ -89,7 +95,19 @@ const Login = ({changeWhich}) => {
     }
 
     const login_btn = () => {
-        console.log("log in bitch");
+        fetch(`https://localhost:7166/User/Login?UserName=${loginUsername}&Password=${loginPassword}`, {
+            method: 'POST',
+        })
+        .then(response => response.json())
+        .then(data => {
+            if(data.message === "Login successful"){
+                console.log("Login successful");
+                console.log(data);
+                fromCache.signedIn(data.userId, loginUsername)
+                navigate(-1)
+            }
+        })
+        .catch(error => console.error('Error uploading post: ', error));
     }
 
     useEffect(() => {

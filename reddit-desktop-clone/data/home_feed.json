@@ -18,6 +18,7 @@
             "downvotes": 256,
             "upvote_flag": true,
             "downvote_flag":false,
+            "saved_flag": false,
             "flair": null
         },
         {
@@ -36,8 +37,9 @@
             "number_of_comments": 83,
             "upvotes": 5000,
             "downvotes": 256,
-            "upvote_flag": true,
+            "upvote_flag": false,
             "downvote_flag":false,
+            "saved_flag": false,
             "flair": null
         },
         {
@@ -58,6 +60,7 @@
             "downvotes": 256,
             "upvote_flag": true,
             "downvote_flag":false,
+            "saved_flag": false,
             "flair": null
         }
     ]

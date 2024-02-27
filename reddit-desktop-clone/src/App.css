@@ -9,6 +9,8 @@ button, p, h3, span, input, div{
 
 .App {
   text-align: center;
+  background-color: #1a1a1b;
+  height: 100%;
 }
 
 .App-logo {

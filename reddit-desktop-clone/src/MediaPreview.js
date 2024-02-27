@@ -19,7 +19,7 @@ const MediaPreview = ( {changeMediaFile, getMediaFile, post_approve2} ) => {
 
         if (file) {
             // Check file type
-            const allowedTypes = ['image/jpeg', 'image/png', 'video/mp4', 'video/webm', 'image/gif'];
+            const allowedTypes = ['image/jpeg', 'image/png', 'video/mp4', 'video/webm', 'image/gif', 'image/webp'];
             if (!allowedTypes.includes(file.type)) {
                 fileType === "image" && setError('Invalid file type. Please select a .jpg, .png, .gif file.');
                 fileType === "video" && setError('Invalid file type. Please select a .mp4, .webm file.');
@@ -85,7 +85,7 @@ const MediaPreview = ( {changeMediaFile, getMediaFile, post_approve2} ) => {
                 <h4>Upload your </h4>
                 <div className="label_container">
                     <label htmlFor="imgFileInput" onClick={() => setFileType("image")}>Image(s)</label>
-                    <input id="imgFileInput" type="file" accept=".jpg, .png, .gif" onInput={(e) => handleFileChange(e)} style={{ display: 'none' }}/>
+                    <input id="imgFileInput" type="file" accept=".jpg, .png, .gif, .webp" onInput={(e) => handleFileChange(e)} style={{ display: 'none' }}/>
                 </div>
                 <h4> or your </h4>
                 <div className="label_container">

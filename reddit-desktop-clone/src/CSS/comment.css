@@ -2,9 +2,11 @@
     display: flex;
     flex-direction: column;
     width: 650px;
+    /* width: 400px; */
     border: #343536 solid 1px;
     background-color: #1a1a1b;
     padding-bottom: 10px;
+    height: 150px;
 }
 
 .commentInfn{
@@ -26,6 +28,10 @@
     padding-left: 20px;
 
     text-align: left;
+}
+
+.commentText .commentItself{
+    font-size: 13px;
 }
 
 .replying_to{
@@ -88,6 +94,11 @@
     width: 25px;
 }
 
+.downvoteCount{
+    margin-right: 20px;
+
+}
+
 .downvoted{
     background-image: url('../Assets/Icons/downvoted.png');
     background-position: center;
@@ -104,6 +115,15 @@
 
 .downvoteComment:hover{
     background-image: url('../Assets/Icons/downvote-hover.png');
+}
+
+.delete_comment{
+    width: 130px;
+    display: flec;
+    justify-content: center;
+    border: #343536 solid 1px;
+    border-radius: 10px;
+    background-color: #E62E2E;
 }
 
 

@@ -1,0 +1,153 @@
+.sub_page{
+    position: relative;
+    left: 50px;
+    top: 60px;
+    width: 90%;
+    height: 100%;
+    overflow-y: scroll;
+}
+
+.sub_close{
+    width: 100px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+    column-gap: 10px;
+}
+
+.sub_close:hover{
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+.sub_page h2, .sub_page p{
+    color: white;
+}
+
+.sub_page .top_sub{
+    /* outline: 1px dotted red; */
+    width: 100%;
+    height: 280px;
+    border: #343536 solid 1px;
+    background-color: #1a1a1b;
+    margin-bottom: 30px;
+}
+
+.top_sub .sub_bkImg{
+    width: 100%;
+    height: 60%;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: none;
+
+}
+
+.sub_bkImg img{
+    width: 100%;
+    height: 100%;
+    /* border-radius: 10px; */
+    /* object-fit: cover; */
+}
+
+.top_sub .sub_info{
+    display: flex;
+    align-items: center;
+    padding:0px 20px;
+    height: 40%;
+
+}
+
+.sub_info .sub_img_small{
+    width: 8%;
+    margin-right: 30px;
+    height: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sub_img_small img{
+    width: 90%;
+    height: 90%;
+    border-radius: 50%;
+    border: none;
+}
+
+.sub_info .sub_name{
+    margin-right: 55%;
+}
+
+.sub_info .join_create{
+    display: flex;
+    width: 20%;
+    justify-content: space-between;
+}
+
+.top_sub button{
+    display: flex;
+    justify-content: center;
+    border: #343536 solid 1px;
+    border-radius: 10px;
+}
+.top_sub button:hover{
+    opacity: 0.7;
+    cursor: pointer;
+}
+
+.join_create .create_post_onSub{
+    width: 120px;
+}
+
+.join_create .join_sub{
+    width: 80px;
+}
+
+.sub_content_container{
+    display: flex;
+    height: 100%;
+    padding-top: 10px;
+    column-gap: 20px;
+}
+
+.sub_content_container .content_cont{
+    width: 65%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 30px;
+    align-items: flex-end;
+    padding-right: 30px;
+}
+
+.sub_content_container .sub_description{
+    width: 400px;
+    height: 100px;
+    /* overflow-y: hidden; */
+    text-align: left;
+    padding-right: 20px;
+    padding-left: 10px;
+    padding: 10px;
+    border: #343536 solid 1px;
+    border-radius: 10px;
+    background-color: #1a1a1b;
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+}
+
+.sub_fixed{
+    position: fixed;
+    left: 900px;
+    top: 70px;
+    /* max-height: 200px;
+    width: 30%; */
+
+}
+
+.sub_description p{
+    font-size: 13px;
+}
+

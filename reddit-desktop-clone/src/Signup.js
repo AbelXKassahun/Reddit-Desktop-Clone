@@ -162,6 +162,22 @@ const Signup = ({changeWhich}) => {
         }
     }
 
+    const handleSignup = () => {
+        // fetch(`https://localhost:7166/User/Login?UserName=${loginUsername}&Password=${loginPassword}`, {
+        //     method: 'POST',
+        // })
+        // .then(response => response.json())
+        // .then(data => {
+        //     if(data.message === "Login successful"){
+        //         console.log("Login successful");
+        //         console.log(data);
+        //         fromCache.signedIn(data.userId, loginUsername)
+        //         navigate(-1)
+        //     }
+        // })
+        // .catch(error => console.error('Error uploading post: ', error));
+    }
+
     useEffect(() => {
         if(signupUsername && signupEmail && signupPassword && confirmed){
             setBtnStyle({opacity: "1", cursor: "pointer"});
@@ -197,7 +213,7 @@ const Signup = ({changeWhich}) => {
                 <input type="password" name="" id="" className="confirm_password" placeholder='Confirm Password'  value={signupConfirmPassword} onChange={(e) => confirmPCheck(e)}/>
                 <p style={confirmPasswordErrorStyles}>{confirmPasswordErrorMsg}</p>
             </div>
-            <button className="confirm_signup" style={btnStyle} disabled={isDisabled}>SIGN UP</button>
+            <button className="confirm_signup" style={btnStyle} disabled={isDisabled} onClick={() => handleSignup()}>SIGN UP</button>
             <div className="other_option">
                 <p>Already a Redditor ? <span onClick={() => changeWhich(true)} href="">LOG IN</span></p>
             </div>

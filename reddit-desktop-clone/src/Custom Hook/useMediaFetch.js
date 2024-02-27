@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 const useMediaFetch = (url) => {
-    const [mediaUrl, setMediaUrl] = useState(null);
+    const [mediaBlob, setMediaBlob] = useState(null);
     const [isPending, setIsPending] = useState(true);
     const [error, setError] = useState(null);
 
@@ -11,11 +11,11 @@ const useMediaFetch = (url) => {
             method: "GET",
             // mode: 'no-cors',
 
-            headers: {
-                // "Content-Type": "application/json"
-                "Content-Type": "video",
-                // "Authorization": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJJZCI6ImFjNzFlNjY2LTFkNzAtNDdiMy05MDhmLTJhZDYxNjMwOThmOCIsInN1YiI6ImFiZWwiLCJlbWFpbCI6ImFiZWwiLCJqdGkiOiI1MDkyYzM3MC05ZDQyLTRjZWYtYmFkNy0zYWFkYTY1NjJjZmEiLCJuYmYiOjE3MDM3NDQ4NDgsImV4cCI6MTcwMzc0NTE0OCwiaWF0IjoxNzAzNzQ0ODQ4fQ.tTKCEBiIbEbWHE1Th6nEzsvQXCgRvHDziY0_HvIngzdwpHBaFXQsaP-Qx8dVDcciXVv8wHnMDJRd7f9JFAzB9g"
-            }
+            // headers: {
+            //     // "Content-Type": "application/json"
+            //     // "Content-Type": "video",
+            //     // "Authorization": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJJZCI6ImFjNzFlNjY2LTFkNzAtNDdiMy05MDhmLTJhZDYxNjMwOThmOCIsInN1YiI6ImFiZWwiLCJlbWFpbCI6ImFiZWwiLCJqdGkiOiI1MDkyYzM3MC05ZDQyLTRjZWYtYmFkNy0zYWFkYTY1NjJjZmEiLCJuYmYiOjE3MDM3NDQ4NDgsImV4cCI6MTcwMzc0NTE0OCwiaWF0IjoxNzAzNzQ0ODQ4fQ.tTKCEBiIbEbWHE1Th6nEzsvQXCgRvHDziY0_HvIngzdwpHBaFXQsaP-Qx8dVDcciXVv8wHnMDJRd7f9JFAzB9g"
+            // }
         }, { signal: abortCont.signal })
         .then((response) => {
             if (!response.ok) {
@@ -27,7 +27,7 @@ const useMediaFetch = (url) => {
         })
         .then((blob) => {
             const objectUrl = URL.createObjectURL(blob);
-            setMediaUrl(objectUrl);
+            setMediaBlob(objectUrl);
             setIsPending(false)
         })
         .catch((error) => {
@@ -39,7 +39,7 @@ const useMediaFetch = (url) => {
         return () => abortCont.abort()
     }, [url])
 
-    return { mediaUrl, isPending, error};
+    return { mediaUrl: mediaBlob, isPending, error};
 }
 
 export default useMediaFetch;

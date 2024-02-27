@@ -18,7 +18,7 @@ const useFetch = (url) => {
                 return response.json();
             })
             .then((data) => {
-                setData(data)
+                setData(data['$values'])
                 setIsPending(false)
                 setError(null)
             })

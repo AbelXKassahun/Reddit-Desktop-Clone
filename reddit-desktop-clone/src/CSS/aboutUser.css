@@ -1,0 +1,55 @@
+.aboutUser{
+    height: 100%;
+}
+
+.aboutUser p{
+    color: white;
+}
+
+.topContent{
+    height: 60%;
+    display: flex;
+    border: #343536 solid 1px;
+    margin-bottom: 20px;
+    background-image: url('../Assets/darkBackground.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.img_cont{
+    width: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.img_cont img{
+    width: 70%;
+    height: 75%;
+    border-radius: 50%;
+    /* border: none; */
+}
+
+.uInfn{
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+    justify-content: center;
+}
+
+.uInfn p{
+    font-size: 18px;
+}
+
+.descr{
+    border: #343536 solid 1px;
+    height: 150px;
+    width: 500px;
+    text-align: left;
+    overflow-y: auto;
+    padding: 5px 10px;
+    padding-top: 5px;
+}
+.descr p{
+    font-size: 12px;
+}

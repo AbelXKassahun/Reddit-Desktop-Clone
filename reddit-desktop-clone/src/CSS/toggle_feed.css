@@ -1,0 +1,57 @@
+.toggle_feed{
+    /* position: fixed; */
+    display: flex;
+    column-gap: 20px;
+    align-items: center;
+    width: 43%;
+    height: 60px;
+    padding: 0px 10px;
+    justify-content: space-between;
+    border: #343536 solid 1px;
+    background-color: #1a1a1b;
+}
+
+.toggle_feed button{
+    width: 90px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    border: #343536 solid 1px;
+    /* border-radius: 10px; */
+}
+
+.toggle_feed .controversial{
+    width: 150px;
+}
+
+.home_feed_dropdown{
+    position: absolute;
+    z-index: 3;
+
+    top: 150px;
+    right: 410px;
+    /* top: 100px;
+    right: 100px; */
+    border: #343536 solid 1px;
+    background-color: #1a1a1b;
+    height: 160px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: none;
+}
+
+.home_feed_dropdown button{
+    border: none;
+    border-bottom: #343536 solid 1px;
+    border-radius: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    width: 88px;
+}
+
+.selected_feed{
+    border: 1px solid white;
+    background-color: #2f2f2f;
+}

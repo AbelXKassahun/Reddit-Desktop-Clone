@@ -1,0 +1,21 @@
+.uprofile{
+    position: relative;
+    left: 100px;
+    top: 100px;
+}
+.uprofile button{
+    width: 100%;
+}
+
+.uprofile_close{
+    width: 80px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+}
+
+.uprofile_close:hover{
+    cursor: pointer;
+    opacity: 0.7;
+}

@@ -9,23 +9,39 @@ h3{
 
 .post{
     /* outline: 2px dotted red; */
-    width: 650px;
+    width: 600px;
     max-width: 650px;
     max-height: 800px;
     min-height: 120px;
     display: flex;
     border: 0.5px solid grey;
     border-radius: 10px;
+    padding-top: 5px;
+}
+
+.post a:hover{
+    cursor: pointer;
+    opacity: 1;
 }
 
 .post .post_rating{
     display: flex;
     flex-direction: column;
     width: 8%;
+    align-items: center;
+    padding-top: 10px;
+    text-align: center;
+    row-gap: 10px;
+}
+
+.post_rating p{
+    font-size: 13px;
+    font-weight: lighter;
+    color: #fff;
+    width: 100%;
 }
 
 .post .right_section{
-    outline: 2px dotted blue;
     max-width: 92%;
     min-width: 92%;
     max-height: 800px;
@@ -40,22 +56,79 @@ h3{
     display: flex;
     align-items: flex-start;
     align-items: center;
-
+    padding-top: 10px;
+    column-gap: 10px;
+    background-color: #1a1a1b;
+    padding-bottom: 10px;
 }
+
+.post_infn img{
+    border: none;
+    border-radius: 50%;
+}
+
+.post_infn a{
+    color: #fff;
+    font-size: 13px;
+    opacity: 0.7;
+}
+
+
+
+
 
 .right_section .actual_post .post_title{
     max-height: 100px;
     min-height: 30px;
     display: flex;
-    align-items: center;
-    outline: 2px dotted red;
+    justify-content: center;
+    padding-left: 10px;
+}
 
+.actual_post p{
+    color: #fff;
+    text-align: left;
+    width: 95%;
+    font-size: 13px;
 }
 
 .right_section .comment_save{
-    /* outline: 2px dotted green; */
-    height: 40px;
+    height: 60px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    column-gap: 20px;
 }
+
+.comment_save .savePost{
+    width: 80px;
+    height: 45px;
+}
+
+.comment_save .view_comment{
+    width: 150px;
+    max-height: 44px;
+}
+
+.comment_save button{
+    display: flex;
+    column-gap: 5px;
+    justify-content: center;
+    align-items: center;
+    border: #343536 solid 1px;
+    border-radius: 10px;
+}
+
+.post_markdown div{
+    background-color: #1a1a1b;
+}
+
+.post_markdown div *{
+    color: white;
+}
+
+.delete_post{
+    width: 110px;
+    background-color: #E62E2E;
+}
+
+
