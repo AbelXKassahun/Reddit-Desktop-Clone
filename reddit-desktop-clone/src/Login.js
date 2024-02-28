@@ -61,6 +61,8 @@ const Login = ({changeWhich}) => {
     const passwordCheck = (e) => {
         let val = e.target.value;
         const spaceRegex = /\s/;
+        const capitalRegex = /.*[A-Z].*/;
+        const specialRegex = /.*[!@#$%^&*()_+{}\[\]:;<>,.?/~`\-=\|"'].*/
         const containsSpace = spaceRegex.test(val);
 
         if(val.length < 8){
@@ -87,17 +89,25 @@ const Login = ({changeWhich}) => {
                 setLoginPassword(null);
             }
             else{
-                setPasswordErrorStyles({display: 'none'});
-                setPasswordErrorMsg('');
-                setLoginPassword(val);
+                if(!capitalRegex.test(val)){
+                    setPasswordErrorMsg("Password should atleast contain one uppercase letter");
+                    setLoginPassword(null);
+                }
+                else if(!specialRegex.test(val)){
+                    setPasswordErrorMsg("Password should atleast contain one special character");
+                    setLoginPassword(null);
+                }
+                else{
+                    setPasswordErrorStyles({display: 'none'});
+                    setPasswordErrorMsg('');
+                    setLoginPassword(val);
+                }
             }
         }
     }
 
     const login_btn = () => {
-        fetch(`https://localhost:7166/User/Login?UserName=${loginUsername}&Password=${loginPassword}`, {
-            method: 'POST',
-        })
+        fetch(`https://localhost:7166/User/Login?UserName=${loginUsername}&Password=${loginPassword}`)
         .then(response => response.json())
         .then(data => {
             if(data.message === "Login successful"){
@@ -107,7 +117,7 @@ const Login = ({changeWhich}) => {
                 navigate(-1)
             }
         })
-        .catch(error => console.error('Error uploading post: ', error));
+        .catch(error => console.error('Error loging in: ', error));
     }
 
     useEffect(() => {

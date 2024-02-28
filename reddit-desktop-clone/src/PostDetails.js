@@ -24,6 +24,8 @@ const PostDetails = ({toggleNavbar}) => {
     const [replyToId, setReplyToId] = useState(null) 
     const [replyStyle, setReplyStyle] = useState({display: 'none'})
 
+    const [opUsername, setOpUsername] = useState(null)
+
     const [justCommented, setJustCommented] = useState(false)
     const [comments, setComments] = useState(null);
 
@@ -38,8 +40,24 @@ const PostDetails = ({toggleNavbar}) => {
             // console.log(fromCache);
             if(replyToId){
                 // make an api call to get the username 
-                setReplyingTo(`Replying to ${'u/dawdawa'}`)
-                setReplyStyle({display: 'flex'})
+                const url_dotnet = `https://localhost:7166/User/GetUserInfo?Id=${replyToId}`;
+                fetch(url_dotnet)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    setReplyingTo(`Replying to u/${data.userName}`)
+                    setReplyStyle({display: 'flex'})
+                    setOpUsername(data.userName)
+                    console.log(data.id);
+                })
+                .catch(error => {
+                    console.error('There was a problem with the fetch operation:', error);
+                });
+
             }
         }
     }, [replyToId])
@@ -85,6 +103,7 @@ const PostDetails = ({toggleNavbar}) => {
         }
         else{
             const url_dotnet = `https://localhost:7166/Comment/GetComment?Id=${fromCache.userId}&postId=${obj.post_Id}`
+            console.log(url_dotnet);
             fetch(url_dotnet)
             .then(response => {
                 if (!response.ok) {
@@ -94,7 +113,7 @@ const PostDetails = ({toggleNavbar}) => {
             })
             .then(data => {
                 setComments(data["$values"])
-
+                console.log(data["$values"]);
             })
             .catch(error => {
                 console.error('There was a problem with the fetch operation:', error);
@@ -105,7 +124,12 @@ const PostDetails = ({toggleNavbar}) => {
 
 
     const handleFocus = (event) => {
-        event.target.select();
+        if(fromCache.loggedIn){
+            event.target.select();
+        }
+        else{
+            navigate('/login');
+        }
     };
 
     const handleChange = (e) => {
@@ -146,31 +170,32 @@ const PostDetails = ({toggleNavbar}) => {
         console.log(comment);
 
         // make an api call to create comment
-        const url_dotnet = 'https://localhost:7166/Comment/CreateComment';
-        try {
-            const response = await fetch(url_dotnet, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(comment)
-            });
-
-            if (!response.ok) {
-                throw new Error('Failed to upload comment');
+        if(fromCache.loggedIn){
+            const url_dotnet = 'https://localhost:7166/Comment/CreateComment';
+            try {
+                const response = await fetch(url_dotnet, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(comment)
+                });
+    
+                if (!response.ok) {
+                    throw new Error('Failed to upload comment');
+                }
+    
+                // Handle success response
+                const responseData = await response.text();
+                setJustCommented(justCommented ? false : true)
+                setInputComment('👍')
+                console.log(responseData)
+            } catch (error) {
+                console.error('Error:', error);
             }
-
-            // Handle success response
-            const responseData = await response.text();
-            setJustCommented(justCommented ? false : true)
-            setInputComment('👍')
-            console.log(responseData)
-        } catch (error) {
-            console.error('Error:', error);
         }
+
     }
-
-
 
 
     return (
@@ -178,7 +203,7 @@ const PostDetails = ({toggleNavbar}) => {
             <div className="profile_close" onClick={() => closePostDetails()}>
                 <span className="material-symbols-outlined">arrow_back</span>
             </div>  
-            {obj && 
+            {obj &&
                 <div className="postContainer">
                     <Post post = {obj} inPostDetails={true}/>
                     <div className="postComment">
@@ -192,7 +217,7 @@ const PostDetails = ({toggleNavbar}) => {
                     <hr />
                     {comments &&
                         (comments.map((comment) => (
-                            <Comment comment={comment} replyToComment={replyToComment} inEditmode={true} key={comment.comment_Id}/>
+                            <Comment comment={comment} commentUnder ={obj.user_Id} replyToComment={replyToComment} inEditmode={true} key={comment.comment_Id}/>
                         )))
                     }                    
                     <p>copyright</p>

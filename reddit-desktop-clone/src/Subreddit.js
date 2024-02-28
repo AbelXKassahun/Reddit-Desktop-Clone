@@ -136,38 +136,49 @@ const Subreddit = ({toggleNavbar}) => {
 
 
     const handle_join = () => {
-        setJoin(join === 'Join' ? 'Leave' : 'Join');
-        // make an api call (join/ unjoin)
-
-        const val = {
-            User_Id: fromCache.userId,
-            sub_id: sub_id.id
-        }
-        const url_join = `https://localhost:7166/Subreddit/`;
-        const offset = join === 'Join' ? 'JoinSubreddit' : 'LeaveSubreddit'
-        fetch(url_join + offset,{
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(val)
-        })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
+        if(fromCache.loggedIn){
+            setJoin(join === 'Join' ? 'Leave' : 'Join');
+            // make an api call (join/ unjoin)
+    
+            const val = {
+                User_Id: fromCache.userId,
+                sub_id: sub_id.id
             }
-            return response.text();
-        })
-        .then(data => {
-            console.log(data);
-        })
-        .catch(error => {
-            console.error('There was a problem with the fetch operation:', error);
-        });
+            const url_join = `https://localhost:7166/Subreddit/`;
+            const offset = join === 'Join' ? 'JoinSubreddit' : 'LeaveSubreddit'
+            fetch(url_join + offset,{
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(val)
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.text();
+            })
+            .then(data => {
+                console.log(data);
+            })
+            .catch(error => {
+                console.error('There was a problem with the fetch operation:', error);
+            });
+        }
+        else{
+            navigate('/login');
+        }
+
     }
 
     const handle_create = () => {
-        navigate(`/create_post/${sub_id.id}`)
+        if(fromCache.loggedIn){
+            navigate(`/create_post/${sub_id.id}`)
+        }
+        else{
+            navigate('/login');
+        }
     }
 
     const closeSub = () => {

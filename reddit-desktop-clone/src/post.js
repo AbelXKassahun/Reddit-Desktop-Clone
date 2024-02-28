@@ -249,34 +249,38 @@ const Post = ({post, isInProfile, setJustDeleted, inPostDetails=false}) => {
             User_Id: fromCache.userId,
             Post_Id: post.post_Id
         }
-        if(!inPostDetails){
-            console.log('not in post details');
-            fetch('https://localhost:7166/History/AddPostHistory',{
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(val)
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.text();
-            })
-            .then(data => {
-                console.log(data)
-                const queryString = new URLSearchParams(post).toString();
-                navigate(`/post_details/${queryString}`)            
-            })
-            .catch(error => {
-                console.error('There was a problem with the fetch operation:', error);
-            });
-
+        if(fromCache.loggedIn){
+            if(!inPostDetails){
+                console.log('not in post details');
+                fetch('https://localhost:7166/History/AddPostHistory',{
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(val)
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.text();
+                })
+                .then(data => {
+                    console.log(data)
+                    const queryString = new URLSearchParams(post).toString();
+                    navigate(`/post_details/${queryString}`)            
+                })
+                .catch(error => {
+                    console.error('There was a problem with the fetch operation:', error);
+                });
+            }
+        }
+        else{
             // delete the code below if the above code works
             const queryString = new URLSearchParams(post).toString();
             navigate(`/post_details/${queryString}`) 
         }
+
     }
 
 
@@ -309,7 +313,6 @@ const Post = ({post, isInProfile, setJustDeleted, inPostDetails=false}) => {
             })
             .then(data => {
                 setUser_info(data)
-                console.log(data.id);
             })
             .catch(error => {
                 console.error('There was a problem with the fetch operation:', error);
@@ -395,7 +398,7 @@ const Post = ({post, isInProfile, setJustDeleted, inPostDetails=false}) => {
                             </div>)}
                         </div>
                         <div className="comment_save">
-                            <button className="view_comment" onClick={() => handlePostDetails()} style={inPostDetails ? {pointerEvents: "none", opacity: 0.5} : {pointerEvents: "auto", opacity: 1}}><span className="material-symbols-outlined">comment</span>View Comments {post.number_Of_Comments}</button>
+                            <button className="view_comment" onClick={() => handlePostDetails()} style={inPostDetails ? {pointerEvents: "none", opacity: 0.5} : {pointerEvents: "auto", opacity: 1}}><span className="material-symbols-outlined">comment</span>View Comments</button>
                             <button className="savePost" onClick={() => handleSave()}><span className="material-symbols-outlined">{saveStyle}</span>Save</button>
                             {isInProfile && (<button className='delete_post' onClick={() => handleDelete()}><span className="material-symbols-outlined">delete</span>Delete Post</button>)}
                         </div>

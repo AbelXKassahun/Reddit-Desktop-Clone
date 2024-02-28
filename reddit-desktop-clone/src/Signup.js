@@ -97,6 +97,8 @@ const Signup = ({changeWhich}) => {
     const passwordCheck = (e) => {
         let val = e.target.value;
         const spaceRegex = /\s/;
+        const capitalRegex = /.*[A-Z].*/;
+        const specialRegex = /.*[!@#$%^&*()_+{}\[\]:;<>,.?/~`\-=\|"'].*/
         const containsSpace = spaceRegex.test(val);
 
         if(val.length < 8){
@@ -131,10 +133,21 @@ const Signup = ({changeWhich}) => {
 
             }
             else{
-                setPasswordErrorStyles({display: 'none'});
-                setPasswordErrorMsg('');
-                setSignupPassword(val);
-                setInputStyle({display: "flex"})
+                if(!capitalRegex.test(val)){
+                    setPasswordErrorMsg("Password should atleast contain one uppercase letter");
+                    setSignupPassword(null);
+                }
+                else if(!specialRegex.test(val)){
+                    setPasswordErrorMsg("Password should atleast contain one special character");
+                    setSignupPassword(null);
+                }
+                else{
+                    setPasswordErrorStyles({display: 'none'});
+                    setPasswordErrorMsg('');
+                    setSignupPassword(val);
+                    setInputStyle({display: "flex"})
+                }
+
             }
         }
         if(isConfirming){

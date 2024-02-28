@@ -8,6 +8,7 @@ function createWindow () {
         height: 800,
         minWidth: 765,
         center: true,
+        resizeable:false,
         // frame: false,
         autoHideMenuBar: true,
         // vibrancy: 'under-window',

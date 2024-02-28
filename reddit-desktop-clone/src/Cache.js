@@ -64,8 +64,8 @@ const Cache = ({children}) => {
 
     const signedIn = (uid, username) => {
         setUserId(uid)
-        setLoggedIn(true)
         setUsername(username)
+        setLoggedIn(true)
         setUpdate(true)
     }
 
